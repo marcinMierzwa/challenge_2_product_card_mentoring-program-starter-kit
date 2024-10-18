@@ -1,16 +1,44 @@
-<div></div>
+<div class="container-fluid vw-100 vh-100 overflow-x-hidden">
+  <nav class="navbar bg-body-tertiary ps-0">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Shop</span>
+      <div class="py-2">
+        @if(categories$ | async; as categories) { @for(category of categories;
+        track category; let index = $index) {
+        <button class="py-1 mx-1 rounded-3 btn btn-{{ colors[index] }}">
+          {{ category }}
+        </button>
+        } }
+      </div>
+    </div>
+  </nav>
 
-@if(categories$ | async; as categories) {}
+  <main class="mx-auto d-flex flex-wrap justify-content-center gap-5 py-5">
+    @if(products$ | async; as products) { @for (product of products; track
+    product.id; let index = $index) {
 
+    <div class="card shadow" style="width: 20rem">
+      <div
+        class="mx-auto d-flex flex-column justify-content-center w-50"
+        style="height: 18rem"
+      >
+        <img [src]="product.image" class="img-fluid" alt="product image" />
+      </div>
 
-
-
-@if(products$ | async; as products) {
-
-   @for (product of products; track product.id; let index = $index) 
-   {
-<div class="box">
-  <p>{{ product.title }}</p>
+      <div class="card-body">
+        <h5 class="card-title text-center">{{ product.title }}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ product.category }}</li>
+        <li class="list-group-item">${{ product.price }}</li>
+      </ul>
+      <div class="card-body ms-auto">
+        <button class="btn btn-success">
+          <i class="bi bi-cart-plus me-2"></i>
+          <span>Buy now!</span>
+        </button>
+      </div>
+    </div>
+    } }
+  </main>
 </div>
-  }
-}

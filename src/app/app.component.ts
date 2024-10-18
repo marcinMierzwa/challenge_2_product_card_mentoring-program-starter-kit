@@ -22,6 +22,7 @@ export interface Product {
 export class AppComponent {
   title = 'mentoring-program-starter-kit';
   private httpClient: HttpClient = inject(HttpClient);
+  colors = ['primary', 'secondary', 'success', 'danger'];
   categories$: Observable<string[]> = this.httpClient.get<string[]>('https://fakestoreapi.com/products/categories');
   products$: Observable<Product[]> = this.httpClient.get<any[]>('https://fakestoreapi.com/products')
   .pipe(
