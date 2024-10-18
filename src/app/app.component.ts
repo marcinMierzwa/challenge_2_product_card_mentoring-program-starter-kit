@@ -23,27 +23,20 @@ export class AppComponent {
   title = 'mentoring-program-starter-kit';
   private httpClient: HttpClient = inject(HttpClient);
   colors = ['primary', 'secondary', 'success', 'danger'];
-  categories$: Observable<string[]> = this.httpClient.get<string[]>('https://fakestoreapi.com/products/categories');
-  products$: Observable<Product[]> = this.httpClient.get<any[]>('https://fakestoreapi.com/products')
-  .pipe(
-    map((products) => 
-      products.map((product) => ({
-        category: product.category,
-        image: product.image,
-        id: product.id,
-        price: product.price,
-        title: product.title
-      }))
-    )
+  categories$: Observable<string[]> = this.httpClient.get<string[]>(
+    'https://fakestoreapi.com/products/categories'
   );
-
+  products$: Observable<Product[]> = this.httpClient
+    .get<any[]>('https://fakestoreapi.com/products')
+    .pipe(
+      map((products) =>
+        products.map((product) => ({
+          category: product.category,
+          image: product.image,
+          id: product.id,
+          price: product.price,
+          title: product.title,
+        }))
+      )
+    );
 }
-
-// fetch('https://fakestoreapi.com/products')
-// .then(res => res.json())
-// .then(data => console.log(data)
-// )
-
-// https://fakestoreapi.com/products/categories
-
-// https://fakestoreapi.com/products
