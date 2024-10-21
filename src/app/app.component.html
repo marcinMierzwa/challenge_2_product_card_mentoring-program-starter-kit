@@ -3,12 +3,14 @@
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1">Shop</span>
       <div class="py-2">
-        @if(categories$ | async; as categories) { @for(category of categories;
+        @if(categories$ | async; as categories) { 
+          @for(category of categories;
         track category; let index = $index) {
-        <button class="py-1 mx-1 rounded-3 btn btn-{{ colors[index] }}">
+        <button class="py-1 mx-1 rounded-3 btn btn-{{ colors[index % colors.length] }}">
           {{ category }}
         </button>
-        } }
+        } 
+      }
       </div>
     </div>
   </nav>
